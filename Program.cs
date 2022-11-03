@@ -1,5 +1,6 @@
 ﻿// Practice for an Battle game 
 
+#region constants
 const char PIRATE = 'P';
 const char STONECHEWER = 'S';
 const char GHOSTWARRIOR = 'G';
@@ -31,7 +32,9 @@ const int SPEEDDARKGOBLIN = 3;
 const int DAMAGEDARKGOBLIN = 1;
 const int HEALTHDARKGOBLIN = 10;
 const int AMORDARKGOBLIN = 8;
+#endregion
 
+#region literal's
 double speedPlayer1 = 0;
 double damagePlayer1 = 0;
 double healthPlayer1 = 0;
@@ -41,10 +44,11 @@ double speedPlayer2 = 0;
 double damagePlayer2 = 0;
 double healthPlayer2 = 0;
 int amorPlayer2 = 0;
-
+#endregion
 
 Console.Clear();
 
+#region Input from user
 Console.WriteLine($"Enter {PIRATE} for Pirate, {STONECHEWER} for Stone Chewer, {GHOSTWARRIOR} for Ghost Warrior, {OUTWORLDER} for Outworlder, {MONSTERKNIGHT} for Monster Knight and {DARKGOBLIN} for Dark Goblin");
 Console.Write("Player one, choose what character you want to play: ");
 char decisionPlayer1 = char.Parse(Console.ReadLine()!);
@@ -52,7 +56,9 @@ char decisionPlayer1 = char.Parse(Console.ReadLine()!);
 Console.Write("Player two, choose what character you want to play: ");
 char decisionPlayer2 = char.Parse(Console.ReadLine()!);
 //char decisionPlayer2 = 'O';
+#endregion
 
+#region Player one stats
 switch (decisionPlayer1)
 {
     case PIRATE:
@@ -95,6 +101,9 @@ switch (decisionPlayer1)
         Console.WriteLine("Invalid input from player one!");
         return;
 }
+#endregion
+
+#region Player two stats
 switch (decisionPlayer2)
 {
     case PIRATE:
@@ -137,13 +146,17 @@ switch (decisionPlayer2)
         Console.WriteLine("Invalid input from player two!");
         return;
 }
+#endregion
 
+#region some literal's for the calculation
 healthPlayer1 += amorPlayer1;
 healthPlayer2 += amorPlayer2;
 
 double damagemultiplayerPlayer1 = Random.Shared.Next(85, 116) / 100d;
 double damagemultiplayerPlayer2 = Random.Shared.Next(85, 116) / 100d;
+#endregion
 
+#region calculate the winner
 while (healthPlayer1 > 0 && healthPlayer2 > 0)
 {
     double testspeedPlayer1 = speedPlayer1;
@@ -163,6 +176,9 @@ while (healthPlayer1 > 0 && healthPlayer2 > 0)
     testspeedPlayer1 = speedPlayer1;
     testspeedPlayer2 = speedPlayer2;
 }
+#endregion
+
+#region Print the winner
 if (healthPlayer1 <= 0 && healthPlayer2 > 0)
 {
     Console.WriteLine("Player two won!");
@@ -175,7 +191,9 @@ else
 {
     Console.WriteLine("It is a draw!");
 }
+#endregion
 
+#region Some literal's for the best character
 int winsPirate = 0;
 int winsStoneChewer = 0;
 int winsGhostWarrior = 0;
@@ -184,7 +202,7 @@ int winsMonsterKnight = 0;
 int winsDarkGoblin = 0;
 int draws = 0;
 
-int count = 10_000;
+int count = 10_000_000;
 
 double speed1 = 0;
 double damage1 = 0;
@@ -196,15 +214,16 @@ double damage2 = 0;
 double health2 = 0;
 int amor2 = 0;
 
-Console.WriteLine("\nNow we will Calculate which character is the best!");
-
 int randomOne = Random.Shared.Next(1, 7);
 int randomTwo = Random.Shared.Next(1, 7);
 
 double damagemultiplayer1 = 0;
 double damagemultiplayer2 = 0;
+#endregion
 
+Console.WriteLine("\nNow we will Calculate which character is the best!");
 
+#region Calculation of the best character
 while (count > 0)
 {
     switch (randomOne)
@@ -367,7 +386,9 @@ while (count > 0)
     randomTwo = Random.Shared.Next(1, 7);
     count--;
 }
-
+#endregion
+ 
+#region Print of the stats from the best character
 Console.WriteLine($"Pirate won {winsPirate} battles");
 Console.WriteLine($"Stone Chewer won {winsStoneChewer} battles");
 Console.WriteLine($"Ghost Warrior won {winsGhostWarrior} battles");
@@ -375,4 +396,4 @@ Console.WriteLine($"Outworlder won {winsOutworlder} battles");
 Console.WriteLine($"Monster Knight won {winsMonsterKnight} battles");
 Console.WriteLine($"Dark Goblin won {winsDarkGoblin} battles");
 Console.WriteLine($"There were {draws} draws");
-
+#endregion
